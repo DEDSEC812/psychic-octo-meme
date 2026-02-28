@@ -1,153 +1,194 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>SIRIUS - Developer is Back</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lj Dendy & Emanuel Feed</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        body {
-            height: 100vh;
-            overflow: hidden;
-            color: white;
-            text-align: center;
-        }
+body{
+    background:#15202B;
+    color:white;
+    display:flex;
+    justify-content:center;
+}
 
-        video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            z-index: -2;
-        }
+.feed{
+    width:600px;
+    border-left:1px solid #38444D;
+    border-right:1px solid #38444D;
+    min-height:100vh;
+}
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: -1;
-        }
+.header{
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
+    border-bottom:1px solid #38444D;
+}
 
-        .container {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.75);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 0 25px rgba(0,0,0,0.7);
-        }
+.post{
+    padding:15px;
+    border-bottom:1px solid #38444D;
+}
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #00f5ff;
-        }
+.profile{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+}
 
-        h2 {
-            margin-top: 25px;
-            margin-bottom: 15px;
-            color: #00f5ff;
-        }
+.profile img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    margin-right:10px;
+}
 
-        p {
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
+.username{
+    font-weight:bold;
+}
 
-        .profile-img {
-            width: 200px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(0, 245, 255, 0.6);
-        }
+.content{
+    margin-bottom:10px;
+    line-height:1.5;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #00f5ff;
-            color: black;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s ease;
-            margin-top: 15px;
-        }
+.actions{
+    display:flex;
+    gap:20px;
+    font-size:14px;
+    color:#8899A6;
+    cursor:pointer;
+}
 
-        .btn:hover {
-            background: white;
-            color: #203a43;
-        }
+.actions span:hover{
+    color:#1DA1F2;
+}
 
-        footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-    </style>
+.comment-section{
+    margin-top:10px;
+}
+
+.comment-section input{
+    width:100%;
+    padding:8px;
+    border-radius:20px;
+    border:none;
+    outline:none;
+    margin-bottom:8px;
+}
+
+.comment{
+    font-size:14px;
+    margin-bottom:5px;
+    color:#E1E8ED;
+}
+
+button{
+    background:#1DA1F2;
+    border:none;
+    padding:6px 15px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.8;
+}
+</style>
 </head>
 
 <body>
 
-    <video autoplay muted loop playsinline>
-        <source src="https://h.uguu.se/HxZYnilf.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+<div class="feed">
+    <div class="header">Community Feed</div>
 
-    <div class="overlay"></div>
+    <!-- POST LJ DENDY -->
+    <div class="post">
+        <div class="profile">
+            <img src="https://o.uguu.se/RdvyiDej.jpg">
+            <div>
+                <div class="username">Lj Dendy</div>
+                <div style="font-size:12px;color:#8899A6;">@ljdendy • Sud d’Haïti</div>
+            </div>
+        </div>
 
-    <div class="container">
-        <h1>🚀 SIRIUS is Back</h1>
-        
-        <p>
-            Hello guys,<br>
-            Ce petit site est pour vous annoncer mon retour dans le monde du développement.
-            Désormais, je me spécialise dans la création d'applications et de sites web.
-        </p>
+        <div class="content">
+            🎭 Je suis un jeune talent en pleine évolution dans la comédie,
+            représentant fièrement le Sud du pays. Chaque sketch est une
+            nouvelle façon d’apporter de la joie et de faire rire mon public !
+        </div>
 
-        <h2>🎭 Lj Dendy Production</h2>
+        <div class="actions">
+            <span onclick="likePost(0)">❤️ Like (<span id="likeCount0">0</span>)</span>
+        </div>
 
-        <img src="https://o.uguu.se/RdvyiDej.jpg" alt="Lj Dendy Production" class="profile-img">
-
-        <p>
-            Lj Dendy Production est un jeune talent en pleine évolution dans le domaine de la comédie,
-            dans le sud du pays, plus précisément aux Cayes.
-        </p>
-
-        <p>
-            Passionné par l'humour et la créativité, il se distingue par son style unique,
-            son énergie naturelle et sa capacité à transformer des situations du quotidien
-            en scènes drôles et authentiques. Son objectif est d’apporter de la joie,
-            de faire rire son public et de représenter fièrement le talent du Sud.
-        </p>
-
-        <p>
-            À travers ses vidéos, ses sketchs et ses projets futurs, Lj Dendy Production
-            travaille avec détermination pour évoluer dans le monde du divertissement
-            et bâtir une véritable identité artistique.
-        </p>
-
-        <a href="#" class="btn">Me contacter</a>
-
-        <footer>
-            © 2026 Powered by SIRIUS
-        </footer>
+        <div class="comment-section">
+            <input type="text" id="commentInput0" placeholder="Écrire un commentaire...">
+            <button onclick="addComment(0)">Commenter</button>
+            <div id="comments0"></div>
+        </div>
     </div>
 
+    <!-- POST EMANUEL -->
+    <div class="post">
+        <div class="profile">
+            <img src="https://n.uguu.se/lpRGJcek.jpg">
+            <div>
+                <div class="username">Emanuel</div>
+                <div style="font-size:12px;color:#8899A6;">@emanueldev • Les Cayes</div>
+            </div>
+        </div>
+
+        <div class="content">
+            💻 Mon nom est Emanuel, développeur de sites web et d’applications.
+            Je viens des Cayes et je suis passionné par le développement de
+            sites internet et de solutions digitales modernes.
+        </div>
+
+        <div class="actions">
+            <span onclick="likePost(1)">❤️ Like (<span id="likeCount1">0</span>)</span>
+        </div>
+
+        <div class="comment-section">
+            <input type="text" id="commentInput1" placeholder="Écrire un commentaire...">
+            <button onclick="addComment(1)">Commenter</button>
+            <div id="comments1"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+let likes = [0,0];
+
+function likePost(index){
+    likes[index]++;
+    document.getElementById("likeCount"+index).innerText = likes[index];
+}
+
+function addComment(index){
+    let input = document.getElementById("commentInput"+index);
+    let commentText = input.value;
+
+    if(commentText.trim() !== ""){
+        let commentDiv = document.createElement("div");
+        commentDiv.className = "comment";
+        commentDiv.innerText = "💬 " + commentText;
+        document.getElementById("comments"+index).appendChild(commentDiv);
+        input.value = "";
+    }
+}
+</script>
+
 </body>
-</html>
+    </html>
