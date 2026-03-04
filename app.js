@@ -66,25 +66,34 @@ onAuthStateChanged(auth,user=>{
   }
 });
 
-// CREATE POST
+// CREATE POST (image ou vidéo)
 window.createPost = async function(){
   const text = document.getElementById("postText").value;
-  const imageFile = document.getElementById("postImage").files[0];
-  let imageUrl="";
-  if(imageFile){
-    const imageRef = ref(storage,"images/"+Date.now()+imageFile.name);
-    await uploadBytes(imageRef,imageFile);
-    imageUrl = await getDownloadURL(imageRef);
+  const file = document.getElementById("postImage").files[0]; // image ou vidéo
+  let fileUrl = "";
+  let fileType = ""; // "image" ou "video"
+
+  if(file){
+    const fileRef = ref(storage, "uploads/" + Date.now() + "_" + file.name);
+    await uploadBytes(fileRef, file);
+    fileUrl = await getDownloadURL(fileRef);
+
+    if(file.type.startsWith("image")) fileType = "image";
+    if(file.type.startsWith("video")) fileType = "video";
   }
+
   await addDoc(collection(db,"posts"),{
     text,
-    imageUrl,
-    createdAt:new Date(),
-    user:auth.currentUser.email,
+    fileUrl,
+    fileType,
+    createdAt: new Date(),
+    user: auth.currentUser.email,
     likes:[],
     comments:[]
   });
+
   document.getElementById("postText").value="";
+  document.getElementById("postImage").value="";
   loadPosts();
 }
 
@@ -95,15 +104,26 @@ async function loadPosts(){
   querySnapshot.forEach(docSnap=>{
     const data = docSnap.data();
     const postId = docSnap.id;
+
+    let mediaHTML = "";
+    if(data.fileUrl){
+      if(data.fileType==="image"){
+        mediaHTML = `<img src="${data.fileUrl}">`;
+      }else if(data.fileType==="video"){
+        mediaHTML = `<video controls src="${data.fileUrl}" style="width:100%; border-radius:8px;"></video>`;
+      }
+    }
+
     postsDiv.innerHTML+=`
       <div class="post" id="${postId}">
         <p><strong>${data.user}</strong></p>
         <p>${data.text}</p>
-        ${data.imageUrl? `<img src="${data.imageUrl}">`:""}
+        ${mediaHTML}
         <div class="post-actions">
           <button onclick="likePost('${postId}')">❤️ ${data.likes.length}</button>
           <button onclick="showCommentBox('${postId}')">💬 ${data.comments.length}</button>
           <button onclick="sharePost('${postId}')">🔗 Share</button>
+          ${data.fileUrl? `<button onclick="downloadFile('${data.fileUrl}')">⬇️ Télécharger</button>` : ""}
         </div>
         <div id="commentBox-${postId}" style="display:none; margin-top:5px;">
           <input type="text" id="commentInput-${postId}" placeholder="Commenter">
@@ -116,6 +136,14 @@ async function loadPosts(){
     `;
   });
 }
+
+// DOWNLOAD FILE
+window.downloadFile = function(fileUrl){
+  const a = document.createElement('a');
+  a.href = fileUrl;
+  a.download = fileUrl.split("/").pop();
+  a.click();
+  }
 
 // LIKE POST
 window.likePost = async function(postId){
