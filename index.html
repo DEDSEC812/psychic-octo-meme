@@ -2,24 +2,36 @@
 <html>
 <head>
   <title>TDA NETWORK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>TDA NETWORK</h1>
+  <nav class="navbar">
+    <div class="logo">TDA NETWORK</div>
+    <div id="userInfo"></div>
+  </nav>
 
-  <div id="auth">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="register()">Register</button>
-    <button onclick="login()">Login</button>
-  </div>
+  <div class="container">
 
-  <div id="postSection" style="display:none;">
-    <textarea id="postText" placeholder="What's on your mind?"></textarea>
-    <input type="file" id="postImage">
-    <button onclick="createPost()">Post</button>
-    <div id="posts"></div>
+    <div id="auth" class="card">
+      <h2>Welcome</h2>
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button class="primary" onclick="register()">Register</button>
+      <button class="secondary" onclick="login()">Login</button>
+    </div>
+
+    <div id="postSection" style="display:none;">
+      <div class="card create-post">
+        <textarea id="postText" placeholder="What's on your mind?"></textarea>
+        <input type="file" id="postImage">
+        <button class="primary" onclick="createPost()">Post</button>
+      </div>
+
+      <div id="posts"></div>
+    </div>
+
   </div>
 
 <script type="module" src="firebase.js"></script>
