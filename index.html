@@ -1,194 +1,28 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lj Dendy & Emanuel Feed</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body{
-    background:#15202B;
-    color:white;
-    display:flex;
-    justify-content:center;
-}
-
-.feed{
-    width:600px;
-    border-left:1px solid #38444D;
-    border-right:1px solid #38444D;
-    min-height:100vh;
-}
-
-.header{
-    padding:15px;
-    font-size:20px;
-    font-weight:bold;
-    border-bottom:1px solid #38444D;
-}
-
-.post{
-    padding:15px;
-    border-bottom:1px solid #38444D;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    margin-bottom:10px;
-}
-
-.profile img{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    margin-right:10px;
-}
-
-.username{
-    font-weight:bold;
-}
-
-.content{
-    margin-bottom:10px;
-    line-height:1.5;
-}
-
-.actions{
-    display:flex;
-    gap:20px;
-    font-size:14px;
-    color:#8899A6;
-    cursor:pointer;
-}
-
-.actions span:hover{
-    color:#1DA1F2;
-}
-
-.comment-section{
-    margin-top:10px;
-}
-
-.comment-section input{
-    width:100%;
-    padding:8px;
-    border-radius:20px;
-    border:none;
-    outline:none;
-    margin-bottom:8px;
-}
-
-.comment{
-    font-size:14px;
-    margin-bottom:5px;
-    color:#E1E8ED;
-}
-
-button{
-    background:#1DA1F2;
-    border:none;
-    padding:6px 15px;
-    border-radius:20px;
-    color:white;
-    cursor:pointer;
-}
-
-button:hover{
-    opacity:0.8;
-}
-</style>
+  <title>TDA NETWORK</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="feed">
-    <div class="header">Community Feed</div>
+  <h1>TDA NETWORK</h1>
 
-    <!-- POST LJ DENDY -->
-    <div class="post">
-        <div class="profile">
-            <img src="https://o.uguu.se/RdvyiDej.jpg">
-            <div>
-                <div class="username">Lj Dendy</div>
-                <div style="font-size:12px;color:#8899A6;">@ljdendy • Sud d’Haïti</div>
-            </div>
-        </div>
+  <div id="auth">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+  </div>
 
-        <div class="content">
-            🎭 Je suis un jeune talent en pleine évolution dans la comédie,
-            représentant fièrement le Sud du pays. Chaque sketch est une
-            nouvelle façon d’apporter de la joie et de faire rire mon public !
-        </div>
+  <div id="postSection" style="display:none;">
+    <textarea id="postText" placeholder="What's on your mind?"></textarea>
+    <input type="file" id="postImage">
+    <button onclick="createPost()">Post</button>
+    <div id="posts"></div>
+  </div>
 
-        <div class="actions">
-            <span onclick="likePost(0)">❤️ Like (<span id="likeCount0">0</span>)</span>
-        </div>
-
-        <div class="comment-section">
-            <input type="text" id="commentInput0" placeholder="Écrire un commentaire...">
-            <button onclick="addComment(0)">Commenter</button>
-            <div id="comments0"></div>
-        </div>
-    </div>
-
-    <!-- POST EMANUEL -->
-    <div class="post">
-        <div class="profile">
-            <img src="https://n.uguu.se/lpRGJcek.jpg">
-            <div>
-                <div class="username">Emanuel</div>
-                <div style="font-size:12px;color:#8899A6;">@emanueldev • Les Cayes</div>
-            </div>
-        </div>
-
-        <div class="content">
-            💻 Mon nom est Emanuel, développeur de sites web et d’applications.
-            Je viens des Cayes et je suis passionné par le développement de
-            sites internet et de solutions digitales modernes.
-        </div>
-
-        <div class="actions">
-            <span onclick="likePost(1)">❤️ Like (<span id="likeCount1">0</span>)</span>
-        </div>
-
-        <div class="comment-section">
-            <input type="text" id="commentInput1" placeholder="Écrire un commentaire...">
-            <button onclick="addComment(1)">Commenter</button>
-            <div id="comments1"></div>
-        </div>
-    </div>
-
-</div>
-
-<script>
-let likes = [0,0];
-
-function likePost(index){
-    likes[index]++;
-    document.getElementById("likeCount"+index).innerText = likes[index];
-}
-
-function addComment(index){
-    let input = document.getElementById("commentInput"+index);
-    let commentText = input.value;
-
-    if(commentText.trim() !== ""){
-        let commentDiv = document.createElement("div");
-        commentDiv.className = "comment";
-        commentDiv.innerText = "💬 " + commentText;
-        document.getElementById("comments"+index).appendChild(commentDiv);
-        input.value = "";
-    }
-}
-</script>
-
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
 </body>
-    </html>
+</html>
