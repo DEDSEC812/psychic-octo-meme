@@ -1,0 +1,22 @@
+body {
+  font-family: Arial;
+  background: #f0f2f5;
+  text-align: center;
+}
+
+textarea {
+  width: 300px;
+  height: 80px;
+}
+
+#posts {
+  margin-top: 20px;
+}
+
+.post {
+  background: white;
+  padding: 10px;
+  margin: 10px auto;
+  width: 300px;
+  border-radius: 8px;
+}
