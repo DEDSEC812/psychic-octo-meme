@@ -69,17 +69,17 @@ onAuthStateChanged(auth,user=>{
 // CREATE POST (image ou vidéo)
 window.createPost = async function(){
   const text = document.getElementById("postText").value;
-  const file = document.getElementById("postImage").files[0]; // image ou vidéo
+  const file = document.getElementById("postImage").files[0];
   let fileUrl = "";
-  let fileType = ""; // "image" ou "video"
+  let fileType = "";
 
   if(file){
     const fileRef = ref(storage, "uploads/" + Date.now() + "_" + file.name);
-    await uploadBytes(fileRef, file);
-    fileUrl = await getDownloadURL(fileRef);
+    const snapshot = await uploadBytes(fileRef, file); // on attend l’upload
+    fileUrl = await getDownloadURL(snapshot.ref); // on prend le lien exact
 
     if(file.type.startsWith("image")) fileType = "image";
-    if(file.type.startsWith("video")) fileType = "video";
+    else if(file.type.startsWith("video")) fileType = "video";
   }
 
   await addDoc(collection(db,"posts"),{
@@ -92,10 +92,13 @@ window.createPost = async function(){
     comments:[]
   });
 
+  // reset form
   document.getElementById("postText").value="";
   document.getElementById("postImage").value="";
+
+  // recharge posts immédiatement
   loadPosts();
-}
+      }
 
 // LOAD POSTS
 async function loadPosts(){
@@ -108,9 +111,9 @@ async function loadPosts(){
     let mediaHTML = "";
     if(data.fileUrl){
       if(data.fileType==="image"){
-        mediaHTML = `<img src="${data.fileUrl}">`;
+        mediaHTML = `<img src="${data.fileUrl}" style="cursor:pointer;" onclick="openMedia('${data.fileUrl}','image')">`;
       }else if(data.fileType==="video"){
-        mediaHTML = `<video controls src="${data.fileUrl}" style="width:100%; border-radius:8px;"></video>`;
+        mediaHTML = `<video controls style="cursor:pointer; width:100%; border-radius:8px;" onclick="openMedia('${data.fileUrl}','video')"><source src="${data.fileUrl}" type="video/mp4"></video>`;
       }
     }
 
@@ -136,6 +139,41 @@ async function loadPosts(){
     `;
   });
 }
+
+// Ouvrir media en grand
+window.openMedia = function(url,type){
+  const modal = document.createElement("div");
+  modal.style.position="fixed";
+  modal.style.top="0";
+  modal.style.left="0";
+  modal.style.width="100%";
+  modal.style.height="100%";
+  modal.style.background="rgba(0,0,0,0.9)";
+  modal.style.display="flex";
+  modal.style.justifyContent="center";
+  modal.style.alignItems="center";
+  modal.style.zIndex="9999";
+  modal.style.cursor="pointer";
+  modal.onclick = ()=> document.body.removeChild(modal);
+
+  if(type==="image"){
+    const img = document.createElement("img");
+    img.src = url;
+    img.style.maxWidth="90%";
+    img.style.maxHeight="90%";
+    modal.appendChild(img);
+  } else if(type==="video"){
+    const video = document.createElement("video");
+    video.src = url;
+    video.controls = true;
+    video.autoplay = true;
+    video.style.maxWidth="90%";
+    video.style.maxHeight="90%";
+    modal.appendChild(video);
+  }
+
+  document.body.appendChild(modal);
+               }
 
 // DOWNLOAD FILE
 window.downloadFile = function(fileUrl){
@@ -196,4 +234,5 @@ window.showHome = function(){
 window.showMessages = function(){
   homePage.style.display="none";
   messagesPage.style.display="block";
-  }
+                        }
+      
