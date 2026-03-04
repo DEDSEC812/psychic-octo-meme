@@ -1,113 +1,112 @@
 body {
-  margin: 0;
+  margin:0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #333;
+  background: #f0f2f5;
 }
 
 /* NAVBAR */
 .navbar {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 15px 30px;
+  background: #1877f2;
+  color: white;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
   position: sticky;
-  top: 0;
+  top:0;
+  z-index:100;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: bold;
+.navbar button {
+  margin-left:10px;
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:white;
+  color:#1877f2;
+  font-weight:bold;
 }
 
-/* CONTAINER */
 .container {
-  max-width: 500px;
-  margin: 30px auto;
+  max-width:600px;
+  margin:20px auto;
 }
 
 /* CARD */
 .card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  margin-bottom: 20px;
-  animation: fadeIn 0.4s ease-in-out;
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-bottom:20px;
 }
 
-/* INPUT */
+/* INPUT & TEXTAREA */
 input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:14px;
 }
 
 textarea {
-  resize: none;
-  height: 80px;
+  resize:none;
+  height:70px;
 }
 
 /* BUTTONS */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+button.primary {
+  background:#1877f2;
+  color:white;
 }
 
-.primary {
-  background: #1877f2;
-  color: white;
+button.primary:hover {
+  background:#0f5dc2;
 }
 
-.primary:hover {
-  background: #0f5dc2;
+/* STORIES */
+.stories {
+  margin-bottom:20px;
 }
 
-.secondary {
-  background: #42b72a;
-  color: white;
+.story-container {
+  display:flex;
+  overflow-x:auto;
+  padding:10px 0;
 }
 
-.secondary:hover {
-  background: #2f8e1d;
+.story-card {
+  min-width:80px;
+  height:100px;
+  margin-right:10px;
+  background:#eee;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-/* POSTS */
-.post {
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+/* FEED POSTS */
+.feed .post {
+  margin-bottom:15px;
+  padding:10px;
+  border-radius:12px;
+  background:white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
-.post img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
+.feed .post img {
+  width:100%;
+  margin-top:8px;
+  border-radius:8px;
 }
 
-/* ANIMATION */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .container {
-    padding: 15px;
+/* MESSAGES */
+#messagesPage .card {
+  padding:10px;
   }
-    }
