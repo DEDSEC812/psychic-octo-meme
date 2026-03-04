@@ -4,12 +4,13 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyC91wBXLyPhyhgAAlvTigqi1Y8QKiAlkDs",
+  authDomain: "infinity-chat-a6cae.firebaseapp.com",
+  projectId: "infinity-chat-a6cae",
+  storageBucket: "infinity-chat-a6cae.firebasestorage.app",
+  messagingSenderId: "34564309390",
+  appId: "1:34564309390:web:c0be111c957e61d267a4df",
+  measurementId: "G-WH5XZ9J3P2"
 };
 
 const app = initializeApp(firebaseConfig);
