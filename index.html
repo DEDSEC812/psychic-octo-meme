@@ -1,40 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>TDA NETWORK</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDA NETWORK</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">TDA NETWORK</div>
-    <div id="userInfo"></div>
-  </nav>
-
-  <div class="container">
-
-    <div id="auth" class="card">
-      <h2>Welcome</h2>
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Password">
-      <button class="primary" onclick="register()">Register</button>
-      <button class="secondary" onclick="login()">Login</button>
-    </div>
-
-    <div id="postSection" style="display:none;">
-      <div class="card create-post">
-        <textarea id="postText" placeholder="What's on your mind?"></textarea>
-        <input type="file" id="postImage">
-        <button class="primary" onclick="createPost()">Post</button>
-      </div>
-
-      <div id="posts"></div>
-    </div>
-
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">TDA NETWORK</div>
+  <div id="navButtons">
+    <button onclick="showHome()">Home</button>
+    <button onclick="showMessages()">Messages</button>
+    <button onclick="logout()">Logout</button>
   </div>
+</nav>
+
+<div class="container">
+
+  <!-- AUTH -->
+  <div id="auth" class="card">
+    <h2>Welcome to TDA NETWORK</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button class="primary" onclick="register()">Register</button>
+    <button class="secondary" onclick="login()">Login</button>
+  </div>
+
+  <!-- HOME PAGE -->
+  <div id="homePage" style="display:none;">
+
+    <!-- STORIES -->
+    <div class="stories">
+      <h3>Stories</h3>
+      <div class="story-container" id="storiesList">
+        <div class="story-card" onclick="addStory()">+ Add Story</div>
+      </div>
+    </div>
+
+    <!-- CREATE POST -->
+    <div class="card create-post">
+      <textarea id="postText" placeholder="What's on your mind?"></textarea>
+      <input type="file" id="postImage">
+      <button class="primary" onclick="createPost()">Post</button>
+    </div>
+
+    <!-- FEED -->
+    <div id="posts" class="feed"></div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div id="messagesPage" style="display:none;">
+    <div class="card">
+      <h3>Messages privés</h3>
+      <div id="messagesList">
+        <p>Pas encore de messages...</p>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <script type="module" src="firebase.js"></script>
 <script type="module" src="app.js"></script>
 </body>
-</html>
+    </html>
