@@ -1,9 +1,11 @@
+// app.js
 import { auth, db, storage } from "./firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
@@ -11,6 +13,8 @@ import {
   addDoc,
   doc,
   updateDoc,
+  getDoc,
+  setDoc,
   arrayUnion,
   query,
   orderBy,
@@ -31,10 +35,25 @@ const storiesList = document.getElementById("storiesList");
 window.register = async function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const name = prompt("Entrez votre name (sera visible publiquement)"); // <-- name public
+
+  if(!name) return alert("Vous devez entrer un name!");
 
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    alert("Compte créé 🔥");
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+    // Enregistrer name et username
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+      name: name,
+      username: email.split("@")[0], // username par défaut si ou vle
+      profilePic: "",
+      createdAt: new Date()
+    });
+
+    // Mettre displayName Firebase Auth (optionnel)
+    await updateProfile(userCredential.user, { displayName: name });
+
+    alert("Compte créé avec succès 🔥");
   } catch (err) {
     alert(err.message);
   }
@@ -59,7 +78,7 @@ window.logout = function () {
 };
 
 // Auto-session
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     authDiv.style.display = "none";
     homePage.style.display = "block";
@@ -70,9 +89,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// ======================= POSTS =======================
-
-// Upload file and create post
+// ======================= CREATE POST =======================
 window.createPost = async function () {
   const text = document.getElementById("postText").value;
   const file = document.getElementById("postImage").files[0];
@@ -94,15 +111,20 @@ window.createPost = async function () {
   }
 
   try {
+    const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+    const name = userDoc.exists() ? userDoc.data().name : auth.currentUser.displayName;
+
     await addDoc(collection(db, "posts"), {
       text,
       fileUrl,
       fileType,
       createdAt: new Date(),
-      user: auth.currentUser.email,
+      userId: auth.currentUser.uid,
+      name: name, // <-- name public
       likes: [],
       comments: [],
     });
+
     document.getElementById("postText").value = "";
     document.getElementById("postImage").value = "";
   } catch (err) {
@@ -111,7 +133,6 @@ window.createPost = async function () {
 };
 
 // ======================= REALTIME POSTS =======================
-
 function loadPostsRealtime() {
   const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
   onSnapshot(q, (snapshot) => {
@@ -133,7 +154,7 @@ function loadPostsRealtime() {
 
       postsDiv.innerHTML += `
         <div class="post" id="${postId}">
-          <p><strong>${data.user}</strong></p>
+          <p><strong>${data.name}</strong></p>
           <p>${data.text}</p>
           ${mediaHTML}
           <div class="post-actions">
@@ -147,7 +168,7 @@ function loadPostsRealtime() {
             <button onclick="addComment('${postId}')">Send</button>
           </div>
           <div id="commentsList-${postId}">
-            ${data.comments.map(c => `<p><strong>${c.user}</strong>: ${c.text}</p>`).join('')}
+            ${data.comments.map(c => `<p><strong>${c.name}</strong>: ${c.text}</p>`).join('')}
           </div>
         </div>
       `;
@@ -156,14 +177,11 @@ function loadPostsRealtime() {
 }
 
 // ======================= POST INTERACTIONS =======================
-
-// Like
 window.likePost = async function (postId) {
   const postRef = doc(db, "posts", postId);
-  await updateDoc(postRef, { likes: arrayUnion(auth.currentUser.email) });
+  await updateDoc(postRef, { likes: arrayUnion(auth.currentUser.uid) });
 };
 
-// Comment
 window.showCommentBox = function (postId) {
   const box = document.getElementById(`commentBox-${postId}`);
   box.style.display = box.style.display === "none" ? "block" : "none";
@@ -172,20 +190,24 @@ window.showCommentBox = function (postId) {
 window.addComment = async function (postId) {
   const input = document.getElementById(`commentInput-${postId}`);
   const commentText = input.value;
-  if (commentText === "") return;
+  if (!commentText) return;
+
+  const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+  const name = userDoc.exists() ? userDoc.data().name : auth.currentUser.displayName;
+
   const postRef = doc(db, "posts", postId);
-  await updateDoc(postRef, { comments: arrayUnion({ user: auth.currentUser.email, text: commentText }) });
+  await updateDoc(postRef, { comments: arrayUnion({ userId: auth.currentUser.uid, name, text: commentText }) });
   input.value = "";
 };
 
-// Share
+// Share post
 window.sharePost = function (postId) {
   const postUrl = window.location.href + `#${postId}`;
   navigator.clipboard.writeText(postUrl);
   alert("Lien du post copié 🔥");
 };
 
-// Download
+// Download file
 window.downloadFile = function (fileUrl) {
   const a = document.createElement("a");
   a.href = fileUrl;
@@ -201,7 +223,7 @@ window.addStory = function () {
   storiesList.appendChild(storyCard);
 };
 
-// ======================= MODAL MEDIA =======================
+// ======================= MEDIA MODAL =======================
 window.openMedia = function (url, type) {
   const modal = document.createElement("div");
   modal.style.position = "fixed";
