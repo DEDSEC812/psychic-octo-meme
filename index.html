@@ -6,64 +6,100 @@
 <title>TDA NETWORK</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+<!-- NAVBAR (hidden before login) -->
+<nav class="navbar" id="navbar" style="display:none;">
   <div class="logo">TDA NETWORK</div>
-  <div id="navButtons">
+
+  <div class="nav-buttons">
     <button onclick="showHome()">Home</button>
     <button onclick="showMessages()">Messages</button>
     <button onclick="logout()">Logout</button>
   </div>
 </nav>
 
+
 <div class="container">
 
-  <!-- AUTH -->
-  <div id="auth" class="card">
+  <!-- AUTH PAGE -->
+  <section id="auth" class="card auth-card">
+
     <h2>Welcome to TDA NETWORK</h2>
+
     <input type="email" id="email" placeholder="Email">
     <input type="password" id="password" placeholder="Password">
-    <button class="primary" onclick="register()">Register</button>
-    <button class="secondary" onclick="login()">Login</button>
-  </div>
+
+    <div class="auth-buttons">
+      <button class="primary" onclick="register()">Register</button>
+      <button class="secondary" onclick="login()">Login</button>
+    </div>
+
+  </section>
+
+
 
   <!-- HOME PAGE -->
-  <div id="homePage" style="display:none;">
+  <section id="homePage" style="display:none;">
 
     <!-- STORIES -->
-    <div class="stories">
+    <div class="stories card">
       <h3>Stories</h3>
+
       <div class="story-container" id="storiesList">
-        <div class="story-card" onclick="addStory()">+ Add Story</div>
+        <div class="story-card add-story" onclick="addStory()">
+          + Add Story
+        </div>
       </div>
     </div>
+
+
 
     <!-- CREATE POST -->
     <div class="card create-post">
-      <textarea id="postText" placeholder="What's on your mind?"></textarea>
+
+      <textarea id="postText"
+      placeholder="What's on your mind?"></textarea>
+
       <input type="file" id="postImage">
-      <button class="primary" onclick="createPost()">Post</button>
+
+      <button class="primary" onclick="createPost()">
+        Post
+      </button>
+
     </div>
+
+
 
     <!-- FEED -->
     <div id="posts" class="feed"></div>
-  </div>
 
-  <!-- MESSAGES -->
-  <div id="messagesPage" style="display:none;">
+  </section>
+
+
+
+  <!-- MESSAGES PAGE -->
+  <section id="messagesPage" style="display:none;">
+
     <div class="card">
+
       <h3>Messages privés</h3>
+
       <div id="messagesList">
         <p>Pas encore de messages...</p>
       </div>
+
     </div>
-  </div>
+
+  </section>
 
 </div>
 
+
+
 <script type="module" src="firebase.js"></script>
 <script type="module" src="app.js"></script>
+
 </body>
-    </html>
+        </html>
