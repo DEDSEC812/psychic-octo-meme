@@ -4,27 +4,21 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-// =======================
-// Configuration Firebase
-// =======================
+// Konfig Firebase pou Infinity Chat
 const firebaseConfig = {
-  apiKey: "AIzaSyC91wBXLyPhyhgAAlvTigqi1Y8QKiAlkDs",
+  apiKey: "API_KEY_FIREBASE_SOTI_NAN_CONSOLE", // ranplase ak kle ou a
   authDomain: "infinity-chat-a6cae.firebaseapp.com",
   projectId: "infinity-chat-a6cae",
   storageBucket: "infinity-chat-a6cae.appspot.com",
   messagingSenderId: "34564309390",
-  appId: "1:34564309390:web:c0be111c957e61d267a4df",
-  measurementId: "G-WH5XZ9J3P2" // optional
+  appId: "1:34564309390:web:af9688244ab57bb567a4df",
+  measurementId: "G-DYL5J8HJ6Y"
 };
 
-// =======================
-// Initialisation App Firebase
-// =======================
+// Initialisation Firebase
 const app = initializeApp(firebaseConfig);
 
-// =======================
-// Exports pou itilize nan lòt fichye
-// =======================
-export const auth = getAuth(app);       // pou login/register
-export const db = getFirestore(app);    // pou Firestore (posts, users, comments)
-export const storage = getStorage(app); // pou upload foto/video
+// Export pou itilize nan lòt fichye
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
