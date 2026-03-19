@@ -1,275 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDA NETWORK</title>
-<style>
-body { font-family: Arial; margin:0; background:#f0f2f5; }
-.container { max-width:800px; margin:20px auto; }
-.card { background:#fff; padding:15px; margin-bottom:15px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-input, textarea { width:100%; padding:10px; margin:5px 0; border-radius:5px; border:1px solid #ccc;}
-button { padding:10px 15px; margin:5px 0; border:none; border-radius:5px; cursor:pointer;}
-button.primary { background:#1877f2; color:#fff; }
-button.secondary { background:#42b72a; color:#fff; }
-.navbar { display:flex; justify-content:space-between; align-items:center; background:#1877f2; color:#fff; padding:10px 20px; }
-.navbar button { background:#fff; color:#1877f2; margin-left:5px; }
-.stories { display:flex; overflow-x:auto; padding:5px; }
-.story-card { min-width:100px; height:150px; background:#eee; margin-right:10px; display:flex; justify-content:center; align-items:center; border-radius:8px; cursor:pointer; }
-.feed .post { margin-bottom:15px; }
-.post-actions button { margin-right:5px; }
-img.profile-pic { width:40px; height:40px; border-radius:50%; margin-right:10px; vertical-align:middle; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Citation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e1e2f, #3a3a5c);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.2rem;
+      margin: 20px 0;
+      padding: 15px;
+      border-left: 4px solid #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+      max-width: 700px;
+      border-radius: 8px;
+    }
+
+    img {
+      max-width: 300px;
+      width: 80%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+
+    .btn-email {
+      background: #ff6b6b;
+    }
+
+    .btn-email:hover {
+      background: #ff4c4c;
+      transform: translateY(-3px);
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe57;
+      transform: translateY(-3px);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar" style="display:none;">
-  <div class="logo">TDA NETWORK</div>
-  <div>
-    <button onclick="showHome()">Home</button>
-    <button onclick="showMessages()">Messages</button>
-    <button onclick="showPersonal()">Info Perso</button>
-    <button onclick="logout()">Logout</button>
+  <h1>Contactez-moi</h1>
+  <p>Si tu as quelque chose à me dire, écris-moi par e-mail ou WhatsApp.</p>
+
+  <img src="https://files.catbox.moe/tkmjyf.jpeg" alt="Image Moderne">
+
+  <div class="buttons">
+    <a href="mailto:siriuscoderrr@gmail.com" class="btn btn-email">
+      📧 E-mail
+    </a>
+    <a href="https://wa.me/50939103464" class="btn btn-whatsapp">
+      💬 WhatsApp
+    </a>
   </div>
-</nav>
 
-<div class="container">
+  <div class="quote">
+    "La lumière de la vérité guide celui qui persévère sur le chemin de la sagesse." – Franc-maçon
+  </div>
 
-  <!-- AUTH -->
-  <section id="auth" class="card">
-    <h2>Créer votre compte</h2>
-    <input type="text" id="username" placeholder="Username (unique)">
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <div>
-      <button class="primary" onclick="register()">Register</button>
-      <button class="secondary" onclick="login()">Login</button>
-    </div>
-  </section>
-
-  <!-- PERSONAL INFO -->
-  <section id="personalInfo" class="card" style="display:none;">
-    <h3>Informations Personnelles</h3>
-    <p><strong>Username:</strong> <span id="showUsername"></span></p>
-    <p><strong>Name:</strong> <span id="showName"></span> <button onclick="editName()">Modifier</button></p>
-    <p>
-      <strong>Profile picture:</strong>
-      <img id="profilePicPreview" src="" alt="Aucune" style="width:50px;height:50px;border-radius:50%;">
-      <input type="file" id="profilePicInput">
-      <button onclick="updateProfilePic()">Mettre à jour</button>
-    </p>
-  </section>
-
-  <!-- HOME PAGE -->
-  <section id="homePage" style="display:none;">
-    <div class="stories card">
-      <h3>Stories</h3>
-      <div class="story-container" id="storiesList">
-        <div class="story-card" onclick="addStory()">+ Add Story</div>
-      </div>
-    </div>
-
-    <div class="card create-post">
-      <textarea id="postText" placeholder="What's on your mind?"></textarea>
-      <input type="file" id="postImage">
-      <button class="primary" onclick="createPost()">Post</button>
-    </div>
-
-    <div id="posts" class="feed"></div>
-  </section>
-
-  <!-- MESSAGES -->
-  <section id="messagesPage" style="display:none;">
-    <div class="card">
-      <h3>Messages privés</h3>
-      <div id="messagesList"><p>Pas encore de messages...</p></div>
-    </div>
-  </section>
-
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, arrayUnion, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-
-// FIREBASE CONFIG
-const firebaseConfig = {
-  apiKey:"VOTRE_API_KEY",
-  authDomain:"VOTRE_DOMAIN",
-  projectId:"VOTRE_PROJECT_ID",
-  storageBucket:"VOTRE_BUCKET",
-  messagingSenderId:"VOTRE_ID",
-  appId:"VOTRE_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-let currentUser = null;
-let currentUsername = "";
-let currentName = "";
-let currentProfilePic = "";
-let currentUserDocId = "";
-
-// REGISTER
-async function register(){
-  const username = document.getElementById("username").value;
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  if(!username||!name||!email||!password) return alert("Remplis tous les champs");
-
-  try{
-    const userCred = await createUserWithEmailAndPassword(auth,email,password);
-    const user = userCred.user;
-    await addDoc(collection(db,"users"),{uid:user.uid, username, name, email, profilePic:"", usernameLastChange:Date.now()});
-    alert("Compte créé 🔥");
-  }catch(err){ alert(err.message); }
-}
-
-// LOGIN
-async function login(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  try{ await signInWithEmailAndPassword(auth,email,password); alert("Bienvenue 🔥"); }
-  catch(err){ alert(err.message); }
-}
-
-// LOGOUT
-function logout(){ signOut(auth); }
-
-// AUTO SESSION
-onAuthStateChanged(auth, async(user)=>{
-  if(user){
-    currentUser=user;
-    document.getElementById("auth").style.display="none";
-    document.getElementById("homePage").style.display="block";
-    document.getElementById("navbar").style.display="flex";
-
-    const usersSnap = await getDocs(collection(db,"users"));
-    usersSnap.forEach(docSnap=>{
-      const data = docSnap.data();
-      if(data.uid===user.uid){
-        currentUsername = data.username;
-        currentName = data.name;
-        currentProfilePic = data.profilePic;
-        currentUserDocId = docSnap.id;
-      }
-    });
-    loadPostsRealtime();
-  }else{
-    currentUser=null;
-    document.getElementById("auth").style.display="block";
-    document.getElementById("homePage").style.display="none";
-    document.getElementById("navbar").style.display="none";
-    document.getElementById("personalInfo").style.display="none";
-  }
-});
-
-// SHOW PERSONAL INFO
-function showPersonal(){
-  document.getElementById("personalInfo").style.display="block";
-  document.getElementById("homePage").style.display="none";
-  document.getElementById("messagesPage").style.display="none";
-  document.getElementById("showUsername").innerText = currentUsername;
-  document.getElementById("showName").innerText = currentName;
-  if(currentProfilePic) document.getElementById("profilePicPreview").src = currentProfilePic;
-}
-
-// EDIT NAME
-async function editName(){
-  const newName = prompt("Entrez votre nouveau name:");
-  if(!newName) return;
-  const userRef = doc(db,"users",currentUserDocId);
-  await updateDoc(userRef,{name:newName});
-  currentName = newName;
-  document.getElementById("showName").innerText=newName;
-}
-
-// UPDATE PROFILE PIC
-async function updateProfilePic(){
-  const file = document.getElementById("profilePicInput").files[0];
-  if(!file) return;
-  const fileRef = ref(storage,"profiles/"+Date.now()+"_"+file.name);
-  const snap = await uploadBytes(fileRef,file);
-  const url = await getDownloadURL(snap.ref);
-  await updateDoc(doc(db,"users",currentUserDocId),{profilePic:url});
-  currentProfilePic=url;
-  document.getElementById("profilePicPreview").src=url;
-}
-
-// NAVIGATION
-function showHome(){ document.getElementById("homePage").style.display="block"; document.getElementById("personalInfo").style.display="none"; document.getElementById("messagesPage").style.display="none";}
-function showMessages(){ document.getElementById("homePage").style.display="none"; document.getElementById("personalInfo").style.display="none"; document.getElementById("messagesPage").style.display="block";}
-
-// POST LOGIC
-async function createPost(){
-  const text = document.getElementById("postText").value;
-  const file = document.getElementById("postImage").files[0];
-  let fileUrl="", fileType="";
-  if(file){ const fileRef = ref(storage,"uploads/"+Date.now()+"_"+file.name); const snap = await uploadBytes(fileRef,file); fileUrl=await getDownloadURL(snap.ref); fileType=file.type.startsWith("image")?"image":"video"; }
-  try{
-    await addDoc(collection(db,"posts"),{text,fileUrl,fileType,createdAt:new Date(), username:currentUsername, name:currentName, profilePic:currentProfilePic, likes:[], comments:[]});
-    document.getElementById("postText").value="";
-    document.getElementById("postImage").value="";
-  }catch(err){ alert(err.message);}
-}
-
-// LOAD POSTS
-function loadPostsRealtime(){
-  const q = query(collection(db,"posts"),orderBy("createdAt","desc"));
-  const postsDiv = document.getElementById("posts");
-  onSnapshot(q,(snapshot)=>{
-    postsDiv.innerHTML="";
-    snapshot.forEach(docSnap=>{
-      const data=docSnap.data();
-      const postId=docSnap.id;
-      let mediaHTML="";
-      if(data.fileUrl){
-        if(data.fileType==="image") mediaHTML=`<img src="${data.fileUrl}" style="width:100%;border-radius:8px;cursor:pointer;" onclick="openMedia('${data.fileUrl}','image')">`;
-        else if(data.fileType==="video") mediaHTML=`<video controls style="width:100%;border-radius:8px;" onclick="openMedia('${data.fileUrl}','video')"><source src="${data.fileUrl}" type="video/mp4"></video>`;
-      }
-      postsDiv.innerHTML+=`
-        <div class="post card" id="${postId}">
-          <p><img src="${data.profilePic||''}" class="profile-pic"><strong>${data.name}</strong></p>
-          <p>${data.text}</p>
-          ${mediaHTML}
-          <div class="post-actions">
-            <button onclick="likePost('${postId}')">❤️ ${data.likes.length}</button>
-            <button onclick="showCommentBox('${postId}')">💬 ${data.comments.length}</button>
-            <button onclick="sharePost('${postId}')">🔗 Share</button>
-          </div>
-          <div id="commentBox-${postId}" style="display:none; margin-top:5px;">
-            <input type="text" id="commentInput-${postId}" placeholder="Commenter">
-            <button onclick="addComment('${postId}')">Send</button>
-          </div>
-          <div id="commentsList-${postId}">
-            ${data.comments.map(c=>`<p><img src="${c.profilePic||''}" class="profile-pic"><strong>${c.name}</strong>: ${c.text}</p>`).join('')}
-          </div>
-        </div>`;
-    });
-  });
-}
-
-// INTERACTIONS
-async function likePost(postId){ await updateDoc(doc(db,"posts",postId),{likes:arrayUnion(currentUsername)});}
-function showCommentBox(postId){ const box=document.getElementById(`commentBox-${postId}`); box.style.display=box.style.display==="none"?"block":"none";}
-async function addComment(postId){ const input=document.getElementById(`commentInput-${postId}`); if(!input.value) return; await updateDoc(doc(db,"posts",postId),{comments:arrayUnion({username:currentUsername,name:currentName,profilePic:currentProfilePic,text:input.value})}); input.value="";}
-function sharePost(postId){ navigator.clipboard.writeText(window.location.href+"#"+postId); alert("Lien copié 🔥");}
-function openMedia(url,type){ const modal=document.createElement("div"); modal.style.position="fixed"; modal.style.top=0; modal.style.left=0; modal.style.width="100%"; modal.style.height="100%"; modal.style.background="rgba(0,0,0,0.9)"; modal.style.display="flex"; modal.style.justifyContent="center"; modal.style.alignItems="center"; modal.style.zIndex="9999"; modal.style.cursor="pointer"; modal.onclick=()=>document.body.removeChild(modal); if(type==="image"){ const img=document.createElement("img"); img.src=url; img.style.maxWidth="90%"; img.style.maxHeight="90%"; modal.appendChild(img);}else if(type==="video"){ const video=document.createElement("video"); video.src=url; video.controls=true; video.autoplay=true; video.style.maxWidth="90%"; video.style.maxHeight="90%"; modal.appendChild(video);} document.body.appendChild(modal);}
-
-// STORIES
-function addStory(){ const storyCard=document.createElement("div"); storyCard.classList.add("story-card"); storyCard.innerText="Nouvelle Story"; document.getElementById("storiesList").appendChild(storyCard);}
-
-window.register=register; window.login=login; window.logout=logout;
-
-</script>
 </body>
-</html>
+      </html>
