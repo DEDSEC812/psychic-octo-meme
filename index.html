@@ -28,7 +28,6 @@ body{
   z-index:9999;
   font-size:2rem;
   color:#ffd700;
-  letter-spacing:3px;
 }
 
 /* PARTICLES */
@@ -78,7 +77,7 @@ img:hover{transform:scale(1.08);}
   50%{transform:translateY(-20px);}
 }
 
-/* CONTACT */
+/* SECTION */
 .section{
   text-align:center;
   padding:40px 20px;
@@ -135,6 +134,34 @@ img:hover{transform:scale(1.08);}
   transition:1s;
 }
 
+/* UNIVERS */
+.universe{
+  margin:40px auto;
+  max-width:700px;
+  padding:25px;
+  background:rgba(255,215,0,0.08);
+  border:1px solid rgba(255,215,0,0.3);
+  border-radius:15px;
+  text-align:left;
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.universe h2{
+  color:#ffd700;
+  margin-bottom:15px;
+  text-align:center;
+}
+
+.universe ul{
+  list-style:none;
+}
+
+.universe li{
+  margin:10px 0;
+}
+
 /* FOOTER */
 footer{
   text-align:center;
@@ -142,7 +169,7 @@ footer{
   color:#aaa;
 }
 
-/* ACTIVE ANIMATION */
+/* ANIMATION */
 .show{
   opacity:1;
   transform:translateY(0);
@@ -163,35 +190,50 @@ footer{
 <img src="https://files.catbox.moe/tkmjyf.jpeg">
 
 <div class="section">
-  <p>Si tu as quelque chose à me dire, écris-moi par e-mail ou WhatsApp.</p>
+  <p>Si tu as quelque chose à me dire, écris-moi par e-mail ou via WhatsApp.</p>
 
   <div class="languages">
-    Créole Haïtien • Anglais (Amérique du Nord) • Français (France)
+    Langues acceptées : Créole haïtien • Anglais (Amérique du Nord) • Français (France)
   </div>
 
-  <a href="mailto:siriuscoderrr@gmail.com" class="btn email">📧 Email</a>
+  <a href="mailto:siriuscoderrr@gmail.com" class="btn email">📧 E-mail</a>
   <a href="https://wa.me/50939103464" class="btn whatsapp">💬 WhatsApp</a>
 </div>
 
 <div class="quote">
-"La lumière de la vérité guide ceux qui cherchent la connaissance et maîtrisent leur esprit."
+« Cherche la lumière, maîtrise ton esprit, et la vérité s’ouvrira à toi. »
 </div>
 
 <div class="life">
 La vie est un voyage initiatique où chaque épreuve façonne l’esprit et révèle la véritable nature de l’âme.  
-Celui qui cherche la lumière doit d’abord affronter ses propres ombres.  
+Celui qui cherche la lumière doit affronter ses propres limites.  
 
-La connaissance extérieure est illusion si elle n’est pas accompagnée d’une compréhension intérieure.  
-La maîtrise de soi est la clé de toute élévation, et la discipline forge les esprits les plus puissants.  
+La connaissance intérieure est la clé de toute évolution.  
+Chaque difficulté est une transformation, chaque chute une leçon.  
 
-Dans ce monde rempli d’illusions, seuls ceux qui observent, réfléchissent et persévèrent accèdent à la vérité.  
-Chaque chute est une leçon, chaque douleur une transformation.  
+Maîtrise-toi, observe et avance… car la vérité ne se voit pas, elle se comprend.
+</div>
 
-Cherche la lumière, deviens la lumière.
+<img src="https://files.catbox.moe/tkmjyf.jpeg">
+
+<div class="universe">
+  <h2>Mon Univers</h2>
+  <ul>
+    <li>💻 Développeur web spécialisé en HTML, CSS et JavaScript</li>
+    <li>📚 En formation dans le domaine du webmastering</li>
+    <li>🌱 Étudiant en sciences agronomiques</li>
+
+    <li>🎵 Passionné par la musique (trap, rap, drill, gospel, etc.)</li>
+    <li>🧿 Passionné par la franc-maçonnerie et la quête de connaissance</li>
+    <li>🎬 Amateur de séries et de films 
+      (Préférences : Game of Thrones, The Originals, Once Upon a Time, Mercredi)</li>
+    <li>📖 Passionné de lecture et de développement personnel</li>
+    <li>🏀 Passionné de basketball</li>
+  </ul>
 </div>
 
 <footer>
-Powered by SIRIUS
+LOGE SIRIUS ASTRA
 </footer>
 
 <script>
@@ -200,7 +242,7 @@ window.onload = () => {
   document.getElementById("loader").style.display = "none";
 };
 
-// SCROLL PROGRESS
+// SCROLL BAR
 window.onscroll = () => {
   let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -208,7 +250,7 @@ window.onscroll = () => {
 };
 
 // FADE IN
-const elements = document.querySelectorAll('.quote, .life');
+const elements = document.querySelectorAll('.quote, .life, .universe');
 window.addEventListener('scroll', () => {
   elements.forEach(el=>{
     const top = el.getBoundingClientRect().top;
@@ -260,4 +302,4 @@ setInterval(draw,33);
 </script>
 
 </body>
-</html>
+  </html>
