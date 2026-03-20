@@ -134,8 +134,8 @@ img:hover{transform:scale(1.08);}
   transition:1s;
 }
 
-/* UNIVERS */
-.universe{
+/* PASSIONS */
+.passions{
   margin:40px auto;
   max-width:700px;
   padding:25px;
@@ -148,17 +148,17 @@ img:hover{transform:scale(1.08);}
   transition:1s;
 }
 
-.universe h2{
+.passions h2{
   color:#ffd700;
   margin-bottom:15px;
   text-align:center;
 }
 
-.universe ul{
+.passions ul{
   list-style:none;
 }
 
-.universe li{
+.passions li{
   margin:10px 0;
 }
 
@@ -179,7 +179,7 @@ footer{
 
 <body>
 
-<div id="loader">SIRIUS ASTRA</div>
+<div id="loader">WELCOME TO MY WORLD</div>
 <div id="progress"></div>
 <canvas id="stars"></canvas>
 
@@ -214,26 +214,27 @@ Chaque difficulté est une transformation, chaque chute une leçon.
 Maîtrise-toi, observe et avance… car la vérité ne se voit pas, elle se comprend.
 </div>
 
-<img src="https://files.catbox.moe/tkmjyf.jpeg">
+<img src="https://files.catbox.moe/4savtk.jpeg">
 
-<div class="universe">
-  <h2>Mon Univers</h2>
+<div class="passions">
+  <h2>Mes Passions et Compétences</h2>
   <ul>
     <li>💻 Développeur web spécialisé en HTML, CSS et JavaScript</li>
     <li>📚 En formation dans le domaine du webmastering</li>
     <li>🌱 Étudiant en sciences agronomiques</li>
 
-    <li>🎵 Passionné par la musique (trap, rap, drill, gospel, etc.)</li>
+    <li>🎵 Passionné par la musique (trap, drill, gospel, etc.)</li>
     <li>🧿 Passionné par la franc-maçonnerie et la quête de connaissance</li>
     <li>🎬 Amateur de séries et de films 
       (Préférences : Game of Thrones, The Originals, Once Upon a Time, Mercredi)</li>
     <li>📖 Passionné de lecture et de développement personnel</li>
     <li>🏀 Passionné de basketball</li>
+    <li>🎨 Amateur d’animés</li>
   </ul>
 </div>
 
 <footer>
-LOGE SIRIUS ASTRA
+trust in God
 </footer>
 
 <script>
@@ -250,7 +251,7 @@ window.onscroll = () => {
 };
 
 // FADE IN
-const elements = document.querySelectorAll('.quote, .life, .universe');
+const elements = document.querySelectorAll('.quote, .life, .passions');
 window.addEventListener('scroll', () => {
   elements.forEach(el=>{
     const top = el.getBoundingClientRect().top;
@@ -302,4 +303,4 @@ setInterval(draw,33);
 </script>
 
 </body>
-  </html>
+</html>
