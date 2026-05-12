@@ -9,120 +9,121 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: Montserrat ,sans-serif;
-scroll-behavior:smooth;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Montserrat ,sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
-background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
-url( https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920 );
-background-size:cover;
-background-attachment:fixed;
-color:#fff;
-overflow-x:hidden;
+  background:
+  linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
+  url( https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920 );
+  background-size:cover;
+  background-attachment:fixed;
+  color:#fff;
+  overflow-x:hidden;
 }
 
 /* PRELOADER */
 #loader{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:9999;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
 .loader-logo{
-font-size:4rem;
-color:#ffd700;
-animation:pulse 2s infinite;
+  font-size:4rem;
+  color:#ffd700;
+  animation:pulse 2s infinite;
 }
 
 .loader-text{
-margin-top:20px;
-font-size:1.3rem;
-letter-spacing:3px;
-color:#fff;
+  margin-top:20px;
+  font-size:1.3rem;
+  letter-spacing:3px;
+  color:#fff;
 }
 
 @keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.2);}
-100%{transform:scale(1);}
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
 }
 
 /* PROGRESS BAR */
 #progress{
-position:fixed;
-top:0;
-left:0;
-height:4px;
-background:#ffd700;
-width:0%;
-z-index:99999;
-box-shadow:0 0 20px #ffd700;
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  background:#ffd700;
+  width:0%;
+  z-index:99999;
+  box-shadow:0 0 20px #ffd700;
 }
 
 /* PARTICLES */
 canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
 }
 
 /* HEADER */
 header{
-text-align:center;
-padding:80px 20px;
+  text-align:center;
+  padding:80px 20px;
 }
 
 .logo{
-font-size:5rem;
-margin-bottom:15px;
-color:#ffd700;
-text-shadow:0 0 20px rgba(255,215,0,0.7);
+  font-size:5rem;
+  margin-bottom:15px;
+  color:#ffd700;
+  text-shadow:0 0 20px rgba(255,215,0,0.7);
 }
 
 h1{
-font-size:clamp(2rem,5vw,4rem);
-color:#ffd700;
-text-shadow:0 0 20px rgba(255,215,0,0.8);
+  font-size:clamp(2rem,5vw,4rem);
+  color:#ffd700;
+  text-shadow:0 0 20px rgba(255,215,0,0.8);
 }
 
 #typing{
-margin-top:20px;
-font-size:1.2rem;
-color:#ddd;
-min-height:40px;
+  margin-top:20px;
+  font-size:1.2rem;
+  color:#ddd;
+  min-height:40px;
+  white-space:pre-wrap;
 }
 
 /* IMAGE */
 img{
-width:300px;
-max-width:90%;
-border-radius:20px;
-margin:30px auto;
-display:block;
-animation:float 5s infinite ease-in-out;
-box-shadow:0 0 30px rgba(255,215,0,0.4);
-transition:0.5s;
+  width:300px;
+  max-width:90%;
+  border-radius:20px;
+  margin:30px auto;
+  display:block;
+  animation:float 5s infinite ease-in-out;
+  box-shadow:0 0 30px rgba(255,215,0,0.4);
+  transition:0.5s;
 }
 
 img:hover{
-transform:scale(1.08) rotate(1deg);
+  transform:scale(1.08) rotate(1deg);
 }
 
 @keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
 }
 
 /* SECTIONS */
@@ -133,21 +134,21 @@ transform:scale(1.08) rotate(1deg);
 .projects,
 .skills,
 .secret{
-margin:40px auto;
-max-width:850px;
-padding:30px;
-background:rgba(255,255,255,0.06);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:20px;
-opacity:0;
-transform:translateY(40px);
-transition:1s;
+  margin:40px auto;
+  max-width:850px;
+  padding:30px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
 }
 
 .show{
-opacity:1;
-transform:translateY(0);
+  opacity:1;
+  transform:translateY(0);
 }
 
 .quote:hover,
@@ -155,127 +156,113 @@ transform:translateY(0);
 .passions:hover,
 .projects:hover,
 .skills:hover{
-transform:scale(1.03);
-box-shadow:0 0 35px rgba(255,215,0,0.25);
+  transform:scale(1.03);
+  box-shadow:0 0 35px rgba(255,215,0,0.25);
 }
 
 .languages{
-color:#ffd700;
-margin:20px 0;
+  color:#ffd700;
+  margin:20px 0;
 }
 
 /* BUTTONS */
 .btn{
-display:inline-block;
-margin:10px;
-padding:14px 30px;
-border-radius:50px;
-text-decoration:none;
-color:#fff;
-font-weight:bold;
-transition:0.4s;
+  display:inline-block;
+  margin:10px;
+  padding:14px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:bold;
+  transition:0.4s;
 }
 
-.email{
-background:#ff4c4c;
-}
-
-.whatsapp{
-background:#25d366;
-}
-
-.music{
-background:#6c5ce7;
-border:none;
-cursor:pointer;
-}
+.email{ background:#ff4c4c; }
+.whatsapp{ background:#25d366; }
+.music{ background:#6c5ce7; border:none; cursor:pointer; }
 
 .btn:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px rgba(255,255,255,0.5);
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(255,255,255,0.5);
 }
 
 /* SKILLS */
 .skill{
-margin:20px 0;
+  margin:20px 0;
 }
 
 .bar{
-background:#222;
-height:12px;
-border-radius:20px;
-overflow:hidden;
-margin-top:8px;
+  background:#222;
+  height:12px;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:8px;
 }
 
 .bar span{
-display:block;
-height:100%;
-background:#ffd700;
-box-shadow:0 0 20px #ffd700;
-animation:grow 2s ease;
+  display:block;
+  height:100%;
+  background:#ffd700;
+  box-shadow:0 0 20px #ffd700;
+  animation:grow 2s ease;
 }
 
 @keyframes grow{
-from{width:0;}
+  from{width:0;}
 }
 
 /* PROJECTS */
 .project-card{
-padding:20px;
-margin:15px 0;
-background:rgba(255,215,0,0.08);
-border-left:4px solid #ffd700;
-border-radius:12px;
-transition:0.4s;
+  padding:20px;
+  margin:15px 0;
+  background:rgba(255,215,0,0.08);
+  border-left:4px solid #ffd700;
+  border-radius:12px;
+  transition:0.4s;
 }
 
 .project-card:hover{
-transform:translateX(10px);
+  transform:translateX(10px);
 }
 
 /* SECRET */
 .secret{
-display:none;
-text-align:center;
-color:#ffd700;
-font-size:1.2rem;
+  display:none;
+  text-align:center;
+  color:#ffd700;
+  font-size:1.2rem;
 }
 
 /* TERMINAL */
 .terminal{
-margin-top:25px;
-background:#000;
-padding:20px;
-border-radius:12px;
-font-family:monospace;
-color:#00ff88;
-box-shadow:0 0 20px rgba(0,255,100,0.2);
+  margin-top:25px;
+  background:#000;
+  padding:20px;
+  border-radius:12px;
+  font-family:monospace;
+  color:#00ff88;
+  box-shadow:0 0 20px rgba(0,255,100,0.2);
 }
 
 /* FOOTER */
 footer{
-text-align:center;
-padding:30px;
-color:#aaa;
+  text-align:center;
+  padding:30px;
+  color:#aaa;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-
-.section,
-.quote,
-.life,
-.passions,
-.projects,
-.skills{
-margin:20px;
-padding:20px;
-}
-
-.logo{
-font-size:3rem;
-}
+  .section,
+  .quote,
+  .life,
+  .passions,
+  .projects,
+  .skills{
+    margin:20px;
+    padding:20px;
+  }
+  .logo{ font-size:3rem; }
 }
 </style>
 </head>
@@ -283,332 +270,211 @@ font-size:3rem;
 <body>
 
 <!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">✦</div>
+  <div class="loader-text">WELCOME TO SIRIUS ASTRA</div>
+</div>
+
+<div id="progress"></div>
+<canvas id="stars"></canvas>
 
 <!-- MUSIC -->
-<audio id="bgmusic" loop>
-<source src="https://files.catbox.moe/9l4m6h.mp3" type="audio/mpeg">
+<audio id="bgmusic" loop autoplay>
+  <source src="https://res.cloudinary.com/dqlh378fb/video/upload/v1778560790/zanta_media_uploads/jaebontqaeoqif7he30t.mp3" type="audio/mpeg">
 </audio>
 
 <header>
-
-<div class="logo">✦</div>
-
-<h1>LOGE SIRIUS ASTRA</h1>
-
-<div id="typing"></div>
-
+  <div class="logo">✦</div>
+  <h1>LOGE SIRIUS ASTRA</h1>
+  <div id="typing"></div>
 </header>
 
 <img src="https://files.catbox.moe/tkmjyf.jpeg">
 
 <div class="section">
+  <p>Si tu as quelque chose à me dire, écris-moi par e-mail ou via WhatsApp.</p>
+  <div class="languages">
+    Créole haïtien • Français • English
+  </div>
 
-<p>
-Si tu as quelque chose à me dire, écris-moi par e-mail ou via WhatsApp.
-</p>
+  <a href="mailto:siriuscoderrr@gmail.com" class="btn email">📧 E-mail</a>
+  <a href="https://wa.me/50939103464" class="btn whatsapp">💬 WhatsApp</a>
 
-<div class="languages">
-Créole haïtien • Français • English
+  <div class="terminal">
+    &gt; ACCESS GRANTED...<br>
+    &gt; WELCOME SIRIUS<br>
+    &gt; SYSTEM ONLINE...
+  </div>
 </div>
 
-<a href="mailto:siriuscoderrr@gmail.com" class="btn email">
-📧 E-mail
-</a>
-
-<a href="https://wa.me/50939103464" class="btn whatsapp">
-💬 WhatsApp
-</a>
-
-<button class="btn music" onclick="toggleMusic()">
-🎵 Musique
-</button>
-
-<div class="terminal">
-> ACCESS GRANTED...<br>
-> WELCOME SIRIUS<br>
-> SYSTEM ONLINE...
-</div>
-
-</div>
-
-<div class="quote" id="quote">
-</div>
+<div class="quote" id="quote"></div>
 
 <div class="life">
-La vie est un voyage initiatique où chaque épreuve façonne l’esprit et révèle la véritable nature de l’âme.
-
-Celui qui cherche la lumière doit affronter ses propres limites.
-
-La connaissance intérieure est la clé de toute évolution.
-
-Chaque difficulté est une transformation, chaque chute une leçon.
-
-Maîtrise-toi, observe et avance…
-car la vérité ne se voit pas, elle se comprend.
+  La vie est un voyage initiatique où chaque épreuve façonne l’esprit et révèle la véritable nature de l’âme.
+  Celui qui cherche la lumière doit affronter ses propres limites.
+  La connaissance intérieure est la clé de toute évolution.
+  Chaque difficulté est une transformation, chaque chute une leçon.
+  Maîtrise-toi, observe et avance… car la vérité ne se voit pas, elle se comprend.
 </div>
 
 <img src="https://files.catbox.moe/4savtk.jpeg">
 
 <div class="passions">
-
-<h2>Mes Passions et Compétences</h2>
-
-<ul>
-<li>💻 Développeur web HTML / CSS / JavaScript</li>
-<li>🌱 Étudiant en sciences agronomiques</li>
-<li>🎵 Passionné de musique</li>
-<li>🧿 Passionné de connaissance et spiritualité</li>
-<li>🎬 Amateur de séries et films</li>
-<li>📖 Lecture & développement personnel</li>
-<li>🏀 Basketball</li>
-<li>🎨 Animés</li>
-</ul>
-
+  <h2>Mes Passions et Compétences</h2>
+  <ul>
+    <li>💻 Développeur web HTML / CSS / JavaScript</li>
+    <li>🌱 Étudiant en sciences agronomiques</li>
+    <li>🎵 Passionné de musique</li>
+    <li>🧿 Passionné de connaissance et spiritualité</li>
+    <li>🎬 Amateur de séries et films</li>
+    <li>📖 Lecture & développement personnel</li>
+    <li>🏀 Basketball</li>
+    <li>🎨 Animés
+  </ul>
 </div>
 
 <!-- SKILLS -->
 <div class="skills">
-
-<h2>Compétences</h2>
-
-<div class="skill">
-HTML
-<div class="bar">
-<span style="width:95%"></span>
-</div>
-</div>
-
-<div class="skill">
-CSS
-<div class="bar">
-<span style="width:90%"></span>
-</div>
-</div>
-
-<div class="skill">
-JavaScript
-<div class="bar">
-<span style="width:80%"></span>
-</div>
-</div>
-
-<div class="skill">
-Webmastering
-<div class="bar">
-<span style="width:75%"></span>
-</div>
-</div>
-
+  <h2>Compétences</h2>
+  <div class="skill">
+    HTML
+    <div class="bar">
+      <span style="width:95%"></span>
+    </div>
+  </div>
+  <div class="skill">
+    CSS
+    <div class="bar">
+      <span style="width:90%"></span>
+    </div>
+  </div>
+  <div class="skill">
+    JavaScript
+    <div class="bar">
+      <span style="width:80%"></span>
+    </div>
+  </div>
+  <div class="skill">
+    Webmastering
+    <div class="bar">
+      <span style="width:75%"></span>
+    </div>
+  </div>
 </div>
 
 <!-- PROJECTS -->
 <div class="projects">
-
-<h2>Mes Projets</h2>
-
-<div class="project-card">
-🤖 INFINITY-MD — Bot WhatsApp avancé
-</div>
-
-<div class="project-card">
-🌌 LOGE SIRIUS ASTRA — Site personnel astral
-</div>
-
-<div class="project-card">
-⚡ Développement de systèmes web modernes
-</div>
-
+  <h2>Mes Projets</h2>
+  <div class="project-card">🤖 INFINITY-MD — Bot WhatsApp avancé</div>
+  <div class="project-card">🌌 LOGE SIRIUS ASTRA — Site personnel astral</div>
+  <div class="project-card">⚡ Développement de systèmes web modernes</div>
 </div>
 
 <!-- SECRET -->
 <div class="secret" id="secret">
-🧿 Accès secret accordé.<br><br>
-"La connaissance appartient à ceux qui observent."
+  🧿 Accès secret accordé.<br><br>
+  "La connaissance appartient à ceux qui observent."
 </div>
 
 <footer>
-trust in God ✦
+  trust in God ✦
 </footer>
 
 <script>
-
-/* LOADER */
+// PRELOADER
 window.onload = () => {
-setTimeout(()=>{
-document.getElementById("loader").style.display="none";
-},2000);
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 1500);
 };
 
-/* PROGRESS BAR */
+// SCROLL PROGRESS BAR
 window.onscroll = () => {
-
-let winScroll =
-document.body.scrollTop ||
-document.documentElement.scrollTop;
-
-let height =
-document.documentElement.scrollHeight -
-document.documentElement.clientHeight;
-
-document.getElementById("progress").style.width =
-(winScroll / height) * 100 + "%";
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("progress").style.width = (winScroll / height) * 100 + "%";
 };
 
-/* TYPING EFFECT */
-const text =
-"Bienvenue dans l univers mystique de Sirius Astra.";
-
+// TYPING EFFECT
+const text = "Bienvenue dans l univers mystique de Sirius Astra.";
 let i = 0;
-
-function typing(){
-
-if(i < text.length){
-
-document.getElementById("typing").innerHTML +=
-text.charAt(i);
-
-i++;
-
-setTimeout(typing,70);
+function typing() {
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 70);
+  }
 }
-}
-
 typing();
 
-/* RANDOM QUOTES */
+// RANDOM QUOTES
 const quotes = [
-
-"« Cherche la lumière et maîtrise ton esprit. »",
-
-"« Le silence est une arme puissante. »",
-
-"« Observe avant d agir. »",
-
-"« La connaissance est la vraie puissance. »",
-
-"« Celui qui comprend l’ombre apprécie la lumière. »"
+  "« Cherche la lumière et maîtrise ton esprit. »",
+  "« Le silence est une arme puissante. »",
+  "« Observe avant d agir. »",
+  "« La connaissance est la vraie puissance. »",
+  "« Celui qui comprend l’ombre apprécie la lumière. »"
 ];
+document.getElementById("quote").innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
 
-document.getElementById("quote").innerHTML =
-quotes[Math.floor(Math.random()*quotes.length)];
-
-/* SCROLL ANIMATION */
-const elements =
-document.querySelectorAll(
- .quote,.life,.passions,.projects,.skills,.section 
-);
-
-window.addEventListener( scroll ,()=>{
-
-elements.forEach(el=>{
-
-const top = el.getBoundingClientRect().top;
-
-if(top < window.innerHeight - 50){
-el.classList.add( show );
-}
-
-});
+// SCROLL ANIMATION
+const elements = document.querySelectorAll( .quote,.life,.passions,.projects,.skills,.section );
+window.addEventListener( scroll , () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 50){
+      el.classList.add( show );
+    }
+  });
 });
 
-/* MUSIC */
-const music = document.getElementById("bgmusic");
-
-function toggleMusic(){
-
-if(music.paused){
-music.play();
-}else{
-music.pause();
-}
-}
-
-/* SECRET CODE */
-document.addEventListener("keydown",(e)=>{
-
-if(e.key.toLowerCase() === "s"){
-
-document.getElementById("secret").style.display = "block";
-
-}
+// SECRET CODE (affiche la section secrète si on appuie sur "S")
+document.addEventListener("keydown", (e) => {
+  if(e.key.toLowerCase() === "s"){
+    document.getElementById("secret").style.display = "block";
+  }
 });
 
-/* STARS */
-const canvas =
-document.getElementById("stars");
-
-const ctx =
-canvas.getContext("2d");
-
+// STARS PARTICLES
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let stars = [];
-
 for(let i=0;i<120;i++){
-
-stars.push({
-
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-d:Math.random()*1
-
-});
+  stars.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2, d:Math.random()*1 });
 }
 
 function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fill();
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s2 => {
+      let dist = Math.hypot(s.x-s2.x, s.y-s2.y);
+      if(dist < 100){
+        ctx.strokeStyle = "rgba(255,255,255,0.05)";
+        ctx.beginPath();
+        ctx.moveTo(s.x,s.y);
+        ctx.lineTo(s2.x,s2.y);
+        ctx.stroke();
+      }
+    });
 
-ctx.fillStyle="white";
-
-stars.forEach((s,index)=>{
-
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-
-/* LINES */
-stars.forEach((s2)=>{
-
-let dist =
-Math.hypot(s.x-s2.x,s.y-s2.y);
-
-if(dist < 100){
-
-ctx.strokeStyle =
-"rgba(255,255,255,0.05)";
-
-ctx.beginPath();
-
-ctx.moveTo(s.x,s.y);
-
-ctx.lineTo(s2.x,s2.y);
-
-ctx.stroke();
-
+    s.y += s.d;
+    if(s.y > canvas.height){
+      s.y = 0;
+      s.x = Math.random()*canvas.width;
+    }
+  });
+  requestAnimationFrame(draw);
 }
-
-});
-
-s.y += s.d;
-
-if(s.y > canvas.height){
-
-s.y = 0;
-s.x = Math.random()*canvas.width;
-
-}
-
-});
-
-requestAnimationFrame(draw);
-}
-
 draw();
-
 </script>
 
 </body>
-  </html>
+</html>
