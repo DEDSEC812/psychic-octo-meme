@@ -229,10 +229,19 @@ footer{
 <canvas id="stars"></canvas>
 
 <!-- MUSIC -->
-<audio id="bgmusic" loop autoplay>
+<button id="playMusic" class="music">▶️ Play Music</button>
+
+<audio id="bgmusic" loop>
   <source src="https://res.cloudinary.com/dqlh378fb/video/upload/v1778560790/zanta_media_uploads/jaebontqaeoqif7he30t.mp3" type="audio/mpeg">
 </audio>
 
+<script>
+const music = document.getElementById("bgmusic");
+document.getElementById("playMusic").addEventListener("click", () => {
+  music.play();
+});
+</script>
+  
 <header>
   <div class="logo">✦</div>
   <h1>LOGE SIRIUS ASTRA</h1>
