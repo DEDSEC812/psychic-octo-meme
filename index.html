@@ -229,7 +229,6 @@ footer{
 <canvas id="stars"></canvas>
 
 <!-- MUSIC -->
-<button id="playMusic" class="music">▶️ Play Music</button>
 
 <audio id="bgmusic" loop>
   <source src="https://res.cloudinary.com/dqlh378fb/video/upload/v1778560790/zanta_media_uploads/jaebontqaeoqif7he30t.mp3" type="audio/mpeg">
@@ -237,9 +236,9 @@ footer{
 
 <script>
 const music = document.getElementById("bgmusic");
-document.getElementById("playMusic").addEventListener("click", () => {
+window.addEventListener("scroll", () => {
   music.play();
-});
+}, { once: true });
 </script>
   
 <header>
@@ -256,7 +255,7 @@ document.getElementById("playMusic").addEventListener("click", () => {
   </div>
 
   <a href="mailto:siriuscoderrr@gmail.com" class="btn email">📧 E-mail</a>
-  <a href="https://wa.me/50939103464" class="btn whatsapp">💬 WhatsApp</a>
+  <a href="https://wa.me/50939221725" class="btn whatsapp">💬 WhatsApp</a>
 
   <div class="terminal">
     &gt; ACCESS GRANTED...<br>
