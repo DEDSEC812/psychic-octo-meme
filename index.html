@@ -3,29 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livre de messages</title>
+<title>Message Board</title>
 
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>💬 Livre de messages</h1>
+<div class="container">
 
-<div class="messages">
-  <input type="text" id="name" placeholder="Ton nom">
-  <textarea id="msg" placeholder="Ton message"></textarea>
-  <button id="sendBtn">Envoyer</button>
+  <h1>💬 Message Board</h1>
+  <p class="subtitle">Tous les messages sont publics et enregistrés</p>
+
+  <div class="form">
+    <input type="text" id="name" placeholder="Ton nom">
+    <textarea id="msg" placeholder="Écris ton message..."></textarea>
+    <button id="sendBtn">Envoyer</button>
+  </div>
+
+  <div id="list"></div>
+
 </div>
-
-<div id="list"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, updateDoc, doc, deleteDoc } 
+import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// 🔥 CONFIG
+// 🔥 Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAm3PH3AaDQFwNUJ6zcbVcd_WyqjJ1mqYY",
   authDomain: "surius-tech.firebaseapp.com",
@@ -38,7 +43,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// SEND MESSAGE
+// ENVOI MESSAGE
 document.getElementById("sendBtn").addEventListener("click", async () => {
   let name = document.getElementById("name").value;
   let msg = document.getElementById("msg").value;
@@ -48,74 +53,36 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
   await addDoc(collection(db, "messages"), {
     name,
     msg,
-    likes: 0,
     time: Date.now()
   });
 
   document.getElementById("msg").value = "";
 });
 
-// LIVE DATA
+// AFFICHAGE LIVE
 const q = query(collection(db, "messages"), orderBy("time","desc"));
 
 onSnapshot(q, (snapshot) => {
   let list = document.getElementById("list");
   list.innerHTML = "";
 
-  snapshot.forEach(docSnap => {
-    let d = docSnap.data();
-    let id = docSnap.id;
+  snapshot.forEach(doc => {
+    let d = doc.data();
 
     let div = document.createElement("div");
     div.className = "msg";
 
     div.innerHTML = `
-      <b>${d.name}</b><br>
-      ${d.msg}<br><br>
-
-      ❤️ ${d.likes || 0}
-      <button onclick="likeMsg('${id}', ${d.likes || 0})">Like</button>
-
-      <button onclick="replyMsg('${id}')">Reply</button>
-      <button onclick="deleteMsg('${id}')">🗑</button>
+      <div class="top">
+        <span class="name">${d.name}</span>
+        <span class="time">• public</span>
+      </div>
+      <div class="text">${d.msg}</div>
     `;
 
     list.appendChild(div);
   });
 });
-
-// ❤️ LIKE
-window.likeMsg = async (id, likes) => {
-  const ref = doc(db, "messages", id);
-  await updateDoc(ref, {
-    likes: likes + 1
-  });
-};
-
-// 💬 REPLY
-window.replyMsg = (id) => {
-  let text = prompt("Ta réponse :");
-  if(!text) return;
-
-  addDoc(collection(db, "messages"), {
-    name: "Reply",
-    msg: "↳ " + text,
-    likes: 0,
-    time: Date.now(),
-    replyTo: id
-  });
-};
-
-// 🗑 DELETE ADMIN
-window.deleteMsg = async (id) => {
-  let pass = prompt("Mot de passe admin ?");
-
-  if(pass === "admin123"){
-    await deleteDoc(doc(db, "messages", id));
-  } else {
-    alert("❌ Mauvais mot de passe");
-  }
-};
 </script>
 
 </body>
